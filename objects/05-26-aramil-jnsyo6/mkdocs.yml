@@ -1,0 +1,68 @@
+site_name: "05 26 · Баня Арамиль"
+site_description: "Исполнительная документация системы автоматизации"
+site_url: "https://psv76.github.io/neirolinks-docs/o/05-26-aramil-jnsyo6/"
+use_directory_urls: true
+
+theme:
+  name: material
+  language: ru
+  custom_dir: overrides
+  features:
+    - navigation.sections
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue grey
+      accent: blue
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue grey
+      accent: blue
+
+plugins:
+  - search:
+      lang:
+        - ru
+        - en
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+
+nav:
+  - Об объекте: index.md
+  - Быстрый старт: quick-start.md
+  - Системы: systems.md
+  - Что произойдёт, если…: scenarios.md
+  - Настройки: settings.md
+  - Аварии и неисправности: alarms.md
+  - Скрипты:
+      - Реестр: scripts/index.md
+      - "01": scripts/01.md
+      - "02": scripts/02.md
+      - "03": scripts/03.md
+      - "04": scripts/04.md
+      - "05": scripts/05.md
+      - "06": scripts/06.md
+      - "07": scripts/07.md
+      - "08": scripts/08.md
+      - "09": scripts/09.md
+      - "10": scripts/10.md
+      - "11": scripts/11.md
+      - "12": scripts/12.md
+  - Техническое приложение: technical.md
+  - История версий: versions.md
+
+extra:
+  generator: false
+  social: []
+
+copyright: "© 2026 NEIROLINKS"

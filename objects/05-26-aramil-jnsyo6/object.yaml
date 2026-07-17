@@ -1,0 +1,30 @@
+project:
+  code: "05 26"
+  slug: "05-26-aramil-jnsyo6"
+  title: "Баня Арамиль"
+  documentation_version: "1.0"
+  scripts_version: "v3"
+  status: "candidate"
+
+publisher:
+  company: "NEIROLINKS"
+
+object:
+  public_address: ""
+  description: "Автоматизация котельной, отопительных контуров, климата, протечек и резервного питания."
+  systems:
+    - heating
+    - climate
+    - leak-protection
+    - power-monitoring
+
+publication:
+  public: true
+  noindex: true
+  random_id: "jnsyo6"
+  url: "https://psv76.github.io/neirolinks-docs/o/05-26-aramil-jnsyo6/"
+
+visibility:
+  show_source_code: false
+  show_internal_channel_names: true
+  show_exact_address: false

@@ -46,18 +46,18 @@ nav:
   - Аварии и неисправности: alarms.md
   - Скрипты:
       - Реестр: scripts/index.md
-      - "01": scripts/01.md
-      - "02": scripts/02.md
-      - "03": scripts/03.md
-      - "04": scripts/04.md
-      - "05": scripts/05.md
-      - "06": scripts/06.md
-      - "07": scripts/07.md
-      - "08": scripts/08.md
-      - "09": scripts/09.md
-      - "10": scripts/10.md
-      - "11": scripts/11.md
-      - "12": scripts/12.md
+      - "01 Управление уставкой газового котла": scripts/01.md
+      - "02 Контроль котла": scripts/02.md
+      - "03 Аварийное переключение на электрокотёл": scripts/03.md
+      - "04 Радиаторы": scripts/04.md
+      - "05 Тёплый пол": scripts/05.md
+      - "06 Контроль CO2 в комнате": scripts/06.md
+      - "07 Контроль влажности": scripts/07.md
+      - "08 Контроль протечек воды": scripts/08.md
+      - "09 Контроль электроснабжения": scripts/09.md
+      - "10 ПИД регулятор ТП": scripts/10.md
+      - "11 ПИД регулятор радиаторы": scripts/11.md
+      - "12 Антилегионелла": scripts/12.md
   - Техническое приложение: technical.md
   - История версий: versions.md
 

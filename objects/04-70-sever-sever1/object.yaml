@@ -1,0 +1,29 @@
+project:
+  code: "04 70"
+  slug: "04-70-sever-sever1"
+  title: "Хладотерминал Север"
+  documentation_version: "0.1"
+  scripts_version: "31.08.2026"
+  status: "candidate"
+
+publisher:
+  company: "NEIROLINKS"
+
+object:
+  public_address: ""
+  description: "Мониторинг холодильных машин, температур морозильных камер и аварийных состояний с уведомлениями в Telegram."
+  systems:
+    - refrigeration-monitoring
+    - temperature-monitoring
+    - notifications
+
+publication:
+  public: true
+  noindex: true
+  random_id: "sever1"
+  url: "https://psv76.github.io/neirolinks-docs/o/04-70-sever-sever1/"
+
+visibility:
+  show_source_code: false
+  show_internal_channel_names: true
+  show_exact_address: false

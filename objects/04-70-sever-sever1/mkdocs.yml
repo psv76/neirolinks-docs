@@ -1,0 +1,59 @@
+site_name: "04 70 · Хладотерминал Север"
+site_description: "Исполнительная документация системы мониторинга холодильных установок"
+site_url: "https://psv76.github.io/neirolinks-docs/o/04-70-sever-sever1/"
+use_directory_urls: true
+
+theme:
+  name: material
+  language: ru
+  custom_dir: overrides
+  features:
+    - navigation.sections
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue grey
+      accent: blue
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue grey
+      accent: blue
+
+plugins:
+  - search:
+      lang:
+        - ru
+        - en
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+
+nav:
+  - Об объекте: index.md
+  - Быстрый старт: quick-start.md
+  - Системы: systems.md
+  - Что произойдёт, если…: scenarios.md
+  - Настройки: settings.md
+  - Аварии и неисправности: alarms.md
+  - Сценарии:
+      - Реестр: scripts/index.md
+      - "10 Коррекция температуры": scripts/10.md
+      - "20 Аварийные уведомления": scripts/20.md
+      - "WBHelpers Общий модуль уведомлений": scripts/helpers.md
+  - Техническое приложение: technical.md
+  - История версий: versions.md
+
+extra:
+  generator: false
+  social: []
+
+copyright: "© 2026 NEIROLINKS"

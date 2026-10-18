@@ -1,0 +1,43 @@
+site_name: "04 42 · Ласточка"
+site_description: "Инструкция по автоматической подпитке отопления"
+site_url: "https://psv76.github.io/neirolinks-docs/o/04-42-lastochka-d2aeaaa5/"
+use_directory_urls: true
+
+theme:
+  name: material
+  language: ru
+  custom_dir: overrides
+  features:
+    - navigation.sections
+    - navigation.top
+  palette:
+    - scheme: default
+      primary: blue grey
+      accent: teal
+
+plugins:
+  - search:
+      lang:
+        - ru
+        - en
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - tables
+
+nav:
+  - Об объекте: index.md
+  - Быстрый старт: quick-start.md
+  - Системы: systems.md
+  - Что произойдёт, если…: scenarios.md
+  - Настройки: settings.md
+  - Аварии: alarms.md
+  - Техническая информация: technical.md
+  - Версии: versions.md
+
+extra:
+  generator: false
+  social: []
+
+copyright: "© 2026 NEIROLINKS"

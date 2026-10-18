@@ -1,0 +1,29 @@
+project:
+  code: "04 42"
+  slug: "04-42-lastochka-d2aeaaa5"
+  title: "Ласточка"
+  documentation_version: "1.0"
+  scripts_version: "414"
+  status: "published"
+
+publisher:
+  company: "NEIROLINKS"
+
+object:
+  public_address: ""
+  description: "Инструкция по контролю давления отопления и действиям при аварии в Sprut.hub."
+  systems:
+    - heating
+    - pressure-monitoring
+    - notifications
+
+publication:
+  public: true
+  noindex: true
+  random_id: "d2aeaaa5"
+  url: "https://psv76.github.io/neirolinks-docs/o/04-42-lastochka-d2aeaaa5/"
+
+visibility:
+  show_source_code: false
+  show_internal_channel_names: false
+  show_exact_address: false

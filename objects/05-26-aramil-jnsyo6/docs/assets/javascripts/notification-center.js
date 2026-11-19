@@ -37,6 +37,7 @@
       notify_recovery: true
     }]));
     let activeSection = "rooms";
+    let requestId = makeId(); // stable across preview/download/retry until a control changes
     const header = el("div","nc-header");
     append(header,el("h2","","Выберите уведомления"),el("p","","Какие события системы вы хотите получать на почту? Варианты ниже формируют заявку инженеру и не меняют оборудование автоматически."));
     const status = el("div","nc-status");
@@ -69,6 +70,7 @@
     feedback.setAttribute("role","status");feedback.setAttribute("aria-live","polite");
     append(footer,summary,accessRow,buttons,feedback,preview);
     append(root,header,status,nav,panel,footer);
+    const invalidate = () => { requestId=makeId(); preview.hidden=true; feedback.textContent=""; updateSummary(); };
     const changedRules = () => catalog.rules.filter(r => state.get(r.event_id).email_customer !== !!r.currently_emails_customer);
     const changedParameters = () => catalog.rules.filter(r => {
       const s=state.get(r.event_id);
@@ -90,8 +92,7 @@
       check.setAttribute("aria-label","Отправлять email: " + r.title);
       check.addEventListener("change", () => {
         state.get(r.event_id).email_customer = check.checked;
-        preview.hidden = true; feedback.textContent = "";
-        updateSummary();
+        invalidate();
       });
       const body = el("span","nc-event-body");
       const title = el("strong","",r.title);
@@ -109,8 +110,8 @@
         const hold = el("input","nc-number");
         hold.type = "number";hold.min="0";hold.max="120";hold.step="1";hold.value=String(state.get(r.event_id).hold_minutes);
         hold.setAttribute("aria-label","Выдержка в минутах для "+r.title);
-        delta.addEventListener("change",()=>{state.get(r.event_id).delta_c = Number(delta.value); preview.hidden=true;});
-        hold.addEventListener("change",()=>{state.get(r.event_id).hold_minutes = Number(hold.value); preview.hidden=true;});
+        delta.addEventListener("change",()=>{state.get(r.event_id).delta_c = Number(delta.value); invalidate();});
+        hold.addEventListener("change",()=>{state.get(r.event_id).hold_minutes = Number(hold.value); invalidate();});
         append(node,el("span","","Допуск, °C"),delta,el("span","","Выдержка, мин"),hold);
         append(body,node);
         if (!r.setpoint_verified) append(body,el("span","nc-warning","Уставка пока не подтверждена; выбор будет заявкой на разработку."));
@@ -146,7 +147,7 @@
     };
     const buildRequest = () => ({
       schema_version:"1.0",
-      request_id: makeId(),
+      request_id: requestId,
       request_type:"notification_policy_change",
       object_id:catalog.object_id,
       baseline_revision:catalog.baseline_revision,

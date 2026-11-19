@@ -7,12 +7,16 @@
     if (text !== undefined) n.textContent = String(text);
     return n;
   };
-  const prettyDate = iso => new Date(iso).toLocaleString("ru-RU", {dateStyle:"long",timeStyle:"short",timeZone:"Europe/Moscow"});
+  const prettyDate = iso => new Date(iso).toLocaleString("ru-RU", {dateStyle:"long",timeStyle:"short",timeZone:"Asia/Yekaterinburg"});
   const statusText = s => s === "existing" ? "Уже реализовано" : "Требует внедрения";
   const severityText = s => ({critical:"Критическое",error:"Ошибка",info:"Информация"})[s] || s;
   const makeId = () => {
     if (typeof crypto !== "undefined" && crypto.randomUUID) return crypto.randomUUID();
-    return "req-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2,10);
+    // Fallback remains UUIDv4-compatible for offline previews; never used for authentication.
+    const b=Array.from({length:16},()=>Math.floor(Math.random()*256));
+    b[6]=(b[6]&15)|64; b[8]=(b[8]&63)|128;
+    const h=b.map(x=>x.toString(16).padStart(2,"0")).join("");
+    return [h.slice(0,8),h.slice(8,12),h.slice(12,16),h.slice(16,20),h.slice(20)].join("-");
   };
   const append = (parent, ...nodes) => nodes.forEach(node => parent.appendChild(node));
   async function mount() {

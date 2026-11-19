@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "object_id": "05_26_Aramil",
   "object_title": "05 26 · Баня Арамиль",
-  "baseline_revision": "github-audit-2026-11-12-live-mqtt-2026-11-19",
+  "baseline_revision": "github-audit-2026-11-19-live-mqtt-2026-11-19-r2",
   "snapshot_at": "2026-11-19T04:28:59Z",
   "snapshot_kind": "retained_mqtt_not_realtime",
   "api_url": null,
@@ -374,6 +374,86 @@
       "rule_status": "existing",
       "kind": "event",
       "description": "Остаётся в журнале."
+    },
+    {
+      "event_id": "boiler.radiator_sensor_invalid",
+      "section": "boiler",
+      "title": "Ошибка датчика подачи радиаторного контура",
+      "severity": "error",
+      "currently_emails_customer": true,
+      "rule_status": "existing",
+      "kind": "event",
+      "description": "Скрипт 04: одно письмо об ошибке измерения и одно о восстановлении."
+    },
+    {
+      "event_id": "boiler.floor_sensor_invalid",
+      "section": "boiler",
+      "title": "Ошибка датчика подачи тёплого пола",
+      "severity": "error",
+      "currently_emails_customer": true,
+      "rule_status": "existing",
+      "kind": "event",
+      "description": "Скрипт 05: одно письмо об ошибке измерения и одно о восстановлении."
+    },
+    {
+      "event_id": "boiler.opentherm_diagnostics_invalid",
+      "section": "boiler",
+      "title": "Недоступны диагностические данные OpenTherm",
+      "severity": "error",
+      "currently_emails_customer": true,
+      "rule_status": "existing",
+      "kind": "event",
+      "description": "Скрипт 02: ошибка чтения диагностических параметров и восстановление."
+    },
+    {
+      "event_id": "climate.co2_sensor_invalid",
+      "section": "vent",
+      "title": "Недоступен датчик CO₂ в комнате",
+      "severity": "error",
+      "currently_emails_customer": true,
+      "rule_status": "existing",
+      "kind": "event",
+      "description": "Скрипт 06: отказ измерения CO₂ и восстановление."
+    },
+    {
+      "event_id": "climate.pool_humidity_sensor_invalid",
+      "section": "vent",
+      "title": "Недоступен датчик влажности бассейна",
+      "severity": "error",
+      "currently_emails_customer": true,
+      "rule_status": "existing",
+      "kind": "event",
+      "description": "Скрипт 07: отказ измерения и восстановление."
+    },
+    {
+      "event_id": "climate.basement_humidity_sensor_invalid",
+      "section": "vent",
+      "title": "Недоступен датчик влажности подвала",
+      "severity": "error",
+      "currently_emails_customer": true,
+      "rule_status": "existing",
+      "kind": "event",
+      "description": "Скрипт 07: отказ измерения и восстановление."
+    },
+    {
+      "event_id": "power.ups_data_invalid",
+      "section": "events",
+      "title": "Недоступны данные WB-UPS",
+      "severity": "error",
+      "currently_emails_customer": true,
+      "rule_status": "existing",
+      "kind": "event",
+      "description": "Скрипт 09: отсутствие корректных данных питания и восстановление."
+    },
+    {
+      "event_id": "dhw.anti_legionella_not_started",
+      "section": "boiler",
+      "title": "Антилегионелла: запуск отклонён из-за аварийного резерва",
+      "severity": "critical",
+      "currently_emails_customer": true,
+      "rule_status": "existing",
+      "kind": "event",
+      "description": "Скрипт 12: отдельное письмо о блокировке запуска санитарного цикла."
     }
   ]
 }

@@ -1,0 +1,379 @@
+{
+  "schema_version": "1.0.0",
+  "object_id": "05_26_Aramil",
+  "object_title": "05 26 · Баня Арамиль",
+  "baseline_revision": "github-audit-2026-11-12-live-mqtt-2026-11-19",
+  "snapshot_at": "2026-11-19T04:28:59Z",
+  "snapshot_kind": "retained_mqtt_not_realtime",
+  "api_url": null,
+  "site_mode": "request_only",
+  "default_delta_c": 5,
+  "default_hold_minutes": 20,
+  "sections": [
+    {
+      "id": "rooms",
+      "title": "Помещения",
+      "description": "Температуры воздуха относительно подтверждённой уставки термостата"
+    },
+    {
+      "id": "boiler",
+      "title": "Котельная и ГВС",
+      "description": "Отопление, резерв, датчики и горячая вода"
+    },
+    {
+      "id": "vent",
+      "title": "Вентиляция и климат",
+      "description": "Приточный воздух, CO₂ и влажность"
+    },
+    {
+      "id": "events",
+      "title": "События",
+      "description": "Протечки, питание и служебные события"
+    }
+  ],
+  "rules": [
+    {
+      "event_id": "room.main.temperature_low",
+      "section": "rooms",
+      "title": "Комната: температура ниже заданной",
+      "severity": "error",
+      "currently_emails_customer": false,
+      "rule_status": "planned",
+      "kind": "below_setpoint",
+      "description": "Сравнение с уставкой комнатного термостата; источник уставки пока не подтверждён.",
+      "sensor": "wb-msw-v4_27/Temperature",
+      "setpoint_verified": false
+    },
+    {
+      "event_id": "room.pool.temperature_low",
+      "section": "rooms",
+      "title": "Бассейн: температура ниже заданной",
+      "severity": "error",
+      "currently_emails_customer": false,
+      "rule_status": "planned",
+      "kind": "below_setpoint",
+      "description": "Сравнение с действующей уставкой термостата зоны бассейна.",
+      "sensor": "wb-msw-v4_190/Temperature",
+      "setpoint_verified": false
+    },
+    {
+      "event_id": "room.basement.temperature_low",
+      "section": "rooms",
+      "title": "Подвал: температура ниже заданной",
+      "severity": "error",
+      "currently_emails_customer": false,
+      "rule_status": "planned",
+      "kind": "below_setpoint",
+      "description": "Действующая уставка и запрос нагрева требуют идентификации.",
+      "sensor": "wb-msw-v4_180/Temperature",
+      "setpoint_verified": false
+    },
+    {
+      "event_id": "room.gazebo.temperature_low",
+      "section": "rooms",
+      "title": "Беседка: температура ниже заданной",
+      "severity": "error",
+      "currently_emails_customer": false,
+      "rule_status": "planned",
+      "kind": "below_setpoint",
+      "description": "Термостат Беседки требует live-проверки уставки и исполнительного канала.",
+      "sensor": "wb-msw-v4_185/Temperature",
+      "setpoint_verified": false
+    },
+    {
+      "event_id": "boiler.gas_fault",
+      "section": "boiler",
+      "title": "Газовый котёл сообщил об ошибке",
+      "severity": "critical",
+      "currently_emails_customer": true,
+      "rule_status": "existing",
+      "kind": "event",
+      "description": "Письмо при подтверждённой неисправности и её снятии."
+    },
+    {
+      "event_id": "boiler.opentherm_lost",
+      "section": "boiler",
+      "title": "Потеря связи OpenTherm",
+      "severity": "error",
+      "currently_emails_customer": true,
+      "rule_status": "existing",
+      "kind": "event",
+      "description": "Письмо об ошибке связи и восстановлении. Сама по себе ошибка связи не включает электрокотёл."
+    },
+    {
+      "event_id": "boiler.backup_engaged",
+      "section": "boiler",
+      "title": "Включение аварийного электрокотла",
+      "severity": "critical",
+      "currently_emails_customer": true,
+      "rule_status": "existing",
+      "kind": "event",
+      "description": "Сообщение о переданных командах резерва; не гарантия физического включения."
+    },
+    {
+      "event_id": "boiler.backup_manual_reset",
+      "section": "boiler",
+      "title": "Ручной сброс аварийного резерва",
+      "severity": "info",
+      "currently_emails_customer": true,
+      "rule_status": "existing",
+      "kind": "event",
+      "description": "Подтверждение ручного сброса аварийного режима."
+    },
+    {
+      "event_id": "boiler.sensor_410_invalid",
+      "section": "boiler",
+      "title": "Отказ датчика 410 — подача коллектора",
+      "severity": "error",
+      "currently_emails_customer": true,
+      "rule_status": "existing",
+      "kind": "event",
+      "description": ""
+    },
+    {
+      "event_id": "boiler.sensor_411_invalid",
+      "section": "boiler",
+      "title": "Отказ датчика 411 — обратка коллектора",
+      "severity": "error",
+      "currently_emails_customer": true,
+      "rule_status": "existing",
+      "kind": "event",
+      "description": ""
+    },
+    {
+      "event_id": "boiler.sensor_413_invalid",
+      "section": "boiler",
+      "title": "Отказ датчика 413 — гидрострелка",
+      "severity": "error",
+      "currently_emails_customer": true,
+      "rule_status": "existing",
+      "kind": "event",
+      "description": ""
+    },
+    {
+      "event_id": "boiler.sensor_414_invalid",
+      "section": "boiler",
+      "title": "Отказ датчика 414 — обратка вентиляции",
+      "severity": "error",
+      "currently_emails_customer": true,
+      "rule_status": "existing",
+      "kind": "event",
+      "description": ""
+    },
+    {
+      "event_id": "boiler.radiator_supply_low",
+      "section": "boiler",
+      "title": "Низкая подача радиаторов при работе насоса",
+      "severity": "error",
+      "currently_emails_customer": true,
+      "rule_status": "existing",
+      "kind": "event",
+      "description": "Порог ниже 25 °C, восстановление выше 35 °C — уставки отдельного действующего скрипта."
+    },
+    {
+      "event_id": "boiler.floor_supply_low",
+      "section": "boiler",
+      "title": "Низкая подача тёплого пола при работе насоса",
+      "severity": "error",
+      "currently_emails_customer": true,
+      "rule_status": "existing",
+      "kind": "event",
+      "description": ""
+    },
+    {
+      "event_id": "boiler.floor_supply_high",
+      "section": "boiler",
+      "title": "Высокая подача тёплого пола",
+      "severity": "critical",
+      "currently_emails_customer": true,
+      "rule_status": "existing",
+      "kind": "event",
+      "description": ""
+    },
+    {
+      "event_id": "boiler.floor_mixer_overheat",
+      "section": "boiler",
+      "title": "Защитное закрытие подмеса ТП при перегреве",
+      "severity": "critical",
+      "currently_emails_customer": false,
+      "rule_status": "existing",
+      "kind": "event",
+      "description": "Защита действует всегда; сейчас событие записывается в журнал без письма."
+    },
+    {
+      "event_id": "boiler.radiator_mixer_overheat",
+      "section": "boiler",
+      "title": "Защитное закрытие подмеса радиаторов",
+      "severity": "critical",
+      "currently_emails_customer": false,
+      "rule_status": "existing",
+      "kind": "event",
+      "description": "Событие в журнале, email сейчас нет."
+    },
+    {
+      "event_id": "dhw.temperature_low",
+      "section": "boiler",
+      "title": "ГВС: бойлер холоднее обычной уставки",
+      "severity": "error",
+      "currently_emails_customer": false,
+      "rule_status": "planned",
+      "kind": "below_setpoint",
+      "description": "Нужна обычная целевая температура ГВС, не цель антилегионеллы 70 °C.",
+      "sensor": "wb-m1w2_131/External Sensor 1",
+      "setpoint_verified": false
+    },
+    {
+      "event_id": "dhw.anti_legionella_failure",
+      "section": "boiler",
+      "title": "Неудачный цикл антилегионеллы",
+      "severity": "critical",
+      "currently_emails_customer": true,
+      "rule_status": "existing",
+      "kind": "event",
+      "description": ""
+    },
+    {
+      "event_id": "dhw.anti_legionella_success",
+      "section": "boiler",
+      "title": "Успешный цикл антилегионеллы",
+      "severity": "info",
+      "currently_emails_customer": true,
+      "rule_status": "existing",
+      "kind": "event",
+      "description": ""
+    },
+    {
+      "event_id": "vent.supply_temperature_low",
+      "section": "vent",
+      "title": "Приток ниже заданной температуры",
+      "severity": "error",
+      "currently_emails_customer": false,
+      "rule_status": "planned",
+      "kind": "below_setpoint",
+      "description": "Сравнение D2 с Supply temp setpoint при включённой установке, после задержки прогрева.",
+      "sensor": "turkov_zenit_1/Supply air temp(D2)",
+      "setpoint_source": "turkov_zenit_1/Supply temp setpoint",
+      "setpoint_verified": true
+    },
+    {
+      "event_id": "vent.error_code",
+      "section": "vent",
+      "title": "Вентустановка сообщает неисправность",
+      "severity": "error",
+      "currently_emails_customer": false,
+      "rule_status": "planned",
+      "kind": "event",
+      "description": "Нужно определить значения кодов ошибок TURKOV и правила подтверждения."
+    },
+    {
+      "event_id": "climate.co2_high",
+      "section": "vent",
+      "title": "Повышенный CO₂ в комнате",
+      "severity": "error",
+      "currently_emails_customer": true,
+      "rule_status": "existing",
+      "kind": "event",
+      "description": "Порог 1500 ppm, восстановление ниже 900 ppm."
+    },
+    {
+      "event_id": "climate.pool_humidity_high",
+      "section": "vent",
+      "title": "Высокая влажность бассейна",
+      "severity": "error",
+      "currently_emails_customer": true,
+      "rule_status": "existing",
+      "kind": "event",
+      "description": "Порог 75 %, восстановление ниже 65 %."
+    },
+    {
+      "event_id": "climate.basement_humidity_high",
+      "section": "vent",
+      "title": "Высокая влажность подвала",
+      "severity": "error",
+      "currently_emails_customer": true,
+      "rule_status": "existing",
+      "kind": "event",
+      "description": "Порог 85 %, восстановление ниже 80 %."
+    },
+    {
+      "event_id": "water.leak_detected",
+      "section": "events",
+      "title": "Протечка воды",
+      "severity": "critical",
+      "currently_emails_customer": true,
+      "rule_status": "existing",
+      "kind": "event",
+      "description": ""
+    },
+    {
+      "event_id": "water.leak_sensor_broken",
+      "section": "events",
+      "title": "Обрыв датчика протечек",
+      "severity": "critical",
+      "currently_emails_customer": true,
+      "rule_status": "existing",
+      "kind": "event",
+      "description": ""
+    },
+    {
+      "event_id": "water.controller_power_lost",
+      "section": "events",
+      "title": "Потеря питания контроллера протечек",
+      "severity": "error",
+      "currently_emails_customer": true,
+      "rule_status": "existing",
+      "kind": "event",
+      "description": ""
+    },
+    {
+      "event_id": "water.controller_battery_low",
+      "section": "events",
+      "title": "Низкий заряд батареи контроллера протечек",
+      "severity": "error",
+      "currently_emails_customer": true,
+      "rule_status": "existing",
+      "kind": "event",
+      "description": ""
+    },
+    {
+      "event_id": "power.ups_on_battery",
+      "section": "events",
+      "title": "Контроллер Wiren Board работает от UPS",
+      "severity": "critical",
+      "currently_emails_customer": true,
+      "rule_status": "existing",
+      "kind": "event",
+      "description": ""
+    },
+    {
+      "event_id": "power.ups_unknown_status",
+      "section": "events",
+      "title": "Неизвестное состояние UPS",
+      "severity": "error",
+      "currently_emails_customer": true,
+      "rule_status": "existing",
+      "kind": "event",
+      "description": ""
+    },
+    {
+      "event_id": "pump.radiators_state",
+      "section": "events",
+      "title": "Штатное включение/выключение насоса радиаторов",
+      "severity": "info",
+      "currently_emails_customer": false,
+      "rule_status": "existing",
+      "kind": "event",
+      "description": "Остаётся в журнале."
+    },
+    {
+      "event_id": "pump.floor_state",
+      "section": "events",
+      "title": "Штатное включение/выключение насоса ТП",
+      "severity": "info",
+      "currently_emails_customer": false,
+      "rule_status": "existing",
+      "kind": "event",
+      "description": "Остаётся в журнале."
+    }
+  ]
+}

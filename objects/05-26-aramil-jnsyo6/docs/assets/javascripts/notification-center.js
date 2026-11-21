@@ -43,7 +43,7 @@
     let activeSection = "rooms";
     let requestId = makeId(); // stable across preview/download/retry until a control changes
     const header = el("div","nc-header");
-    append(header,el("h2","","Выберите уведомления"),el("p","","Какие события системы вы хотите получать на почту? Варианты ниже формируют заявку инженеру и не меняют оборудование автоматически."));
+    append(header,el("h2","","Уведомления по инженерным системам"),el("p","","Email по котельной, ГВС, вентиляции и другим событиям Wiren Board настраивается через заявку инженеру. Комнатные термостаты остаются в Sprut.hub: для них используются push-уведомления."));
     const status = el("div","nc-status");
     status.textContent = "Последний MQTT-снимок: " + prettyDate(catalog.snapshot_at) +
       ". Текущие значения и уставки могут отличаться. Действующие email-правила определены по проверенным скриптам 12.11.2026.";
@@ -125,6 +125,7 @@
     };
     const draw = () => {
       nav.replaceChildren();panel.replaceChildren();
+      footer.hidden = activeSection === "rooms";
       for (const s of catalog.sections) {
         const b=el("button","nc-tab"+(s.id===activeSection?" nc-tab-active":""),s.title);
         b.type="button";b.setAttribute("role","tab");b.setAttribute("aria-selected",s.id===activeSection?"true":"false");
@@ -134,6 +135,28 @@
       const section = catalog.sections.find(s=>s.id===activeSection);
       append(panel,el("h3","",section.title),el("p","nc-muted",section.description));
       const rows=catalog.rules.filter(r=>r.section===activeSection);
+      if (activeSection==="rooms") {
+        const info = catalog.rooms_push;
+        if (!info || !Array.isArray(info.thermostats)) {
+          panel.appendChild(el("p","nc-warning","Раздел термостатов недоступен. Email-заявка не содержит комнатных правил."));
+          return;
+        }
+        panel.appendChild(el("p","nc-warning","Решение согласовано: логика комнатных термостатов остаётся в Sprut.hub. Настройка push-сценариев и проверка доставки ожидают доступа к Sprut.hub. В Wiren Board ничего переносить не требуется."));
+        panel.appendChild(el("p","nc-muted","Целевое условие: температура помещения ниже текущей уставки соответствующего термостата на 5 °C в течение согласованной выдержки. Это требование к будущим сценариям Sprut, а не уже включённое уведомление."));
+        const list=el("div","nc-list");
+        for (const t of info.thermostats) {
+          const item=el("div","nc-event");
+          const body=el("span","nc-event-body");
+          append(body,el("strong","",t.title),el("span","nc-description","Push Sprut.hub — настройка и проверка ещё не выполнены"));
+          item.appendChild(body); list.appendChild(item);
+        }
+        panel.appendChild(list);
+        const link=el("a","", "Документация Sprut.hub: push-уведомления");
+        link.href=info.official_reference || "https://wiki.spruthub.ru/Push_уведомления_из_webapp";
+        link.target="_blank";link.rel="noopener noreferrer";
+        panel.appendChild(link);
+        return;
+      }
       if (activeSection==="events") {
         for (const severity of ["critical","error","info"]) {
           const group=rows.filter(r=>r.severity===severity);

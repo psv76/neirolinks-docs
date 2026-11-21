@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "object_id": "05_26_Aramil",
   "object_title": "05 26 · Баня Арамиль",
-  "baseline_revision": "github-audit-2026-11-19-live-mqtt-2026-11-19-r2",
+  "baseline_revision": "aramil-email-scope-2026-11-21-r3",
   "snapshot_at": "2026-11-19T04:28:59Z",
   "snapshot_kind": "retained_mqtt_not_realtime",
   "api_url": null,
@@ -12,8 +12,10 @@
   "sections": [
     {
       "id": "rooms",
-      "title": "Помещения",
-      "description": "Температуры воздуха относительно подтверждённой уставки термостата"
+      "title": "Помещения · Sprut.hub",
+      "description": "Комнатные термостаты и push-уведомления настраиваются в Sprut.hub; этот раздел не формирует email-заявки для Wiren Board.",
+      "channel": "sprut_push",
+      "configurable_here": false
     },
     {
       "id": "boiler",
@@ -32,54 +34,6 @@
     }
   ],
   "rules": [
-    {
-      "event_id": "room.main.temperature_low",
-      "section": "rooms",
-      "title": "Комната: температура ниже заданной",
-      "severity": "error",
-      "currently_emails_customer": false,
-      "rule_status": "planned",
-      "kind": "below_setpoint",
-      "description": "Сравнение с уставкой комнатного термостата; источник уставки пока не подтверждён.",
-      "sensor": "wb-msw-v4_27/Temperature",
-      "setpoint_verified": false
-    },
-    {
-      "event_id": "room.pool.temperature_low",
-      "section": "rooms",
-      "title": "Бассейн: температура ниже заданной",
-      "severity": "error",
-      "currently_emails_customer": false,
-      "rule_status": "planned",
-      "kind": "below_setpoint",
-      "description": "Сравнение с действующей уставкой термостата зоны бассейна.",
-      "sensor": "wb-msw-v4_190/Temperature",
-      "setpoint_verified": false
-    },
-    {
-      "event_id": "room.basement.temperature_low",
-      "section": "rooms",
-      "title": "Подвал: температура ниже заданной",
-      "severity": "error",
-      "currently_emails_customer": false,
-      "rule_status": "planned",
-      "kind": "below_setpoint",
-      "description": "Действующая уставка и запрос нагрева требуют идентификации.",
-      "sensor": "wb-msw-v4_180/Temperature",
-      "setpoint_verified": false
-    },
-    {
-      "event_id": "room.gazebo.temperature_low",
-      "section": "rooms",
-      "title": "Беседка: температура ниже заданной",
-      "severity": "error",
-      "currently_emails_customer": false,
-      "rule_status": "planned",
-      "kind": "below_setpoint",
-      "description": "Термостат Беседки требует live-проверки уставки и исполнительного канала.",
-      "sensor": "wb-msw-v4_185/Temperature",
-      "setpoint_verified": false
-    },
     {
       "event_id": "boiler.gas_fault",
       "section": "boiler",
@@ -455,5 +409,41 @@
       "kind": "event",
       "description": "Скрипт 12: отдельное письмо о блокировке запуска санитарного цикла."
     }
-  ]
+  ],
+  "rooms_push": {
+    "owner": "Sprut.hub",
+    "channel": "push",
+    "status": "agreed_pending_configuration",
+    "controller_access": "unavailable_as_of_2026-11-21",
+    "monitoring_rule": "Температура ниже текущей уставки термостата на 5 °C в течение согласованной выдержки",
+    "requires_sprut_access": true,
+    "thermostats": [
+      {
+        "event_id": "room.main.temperature_low",
+        "title": "Комната: температура ниже заданной",
+        "description": "Сравнение с уставкой комнатного термостата; источник уставки пока не подтверждён.",
+        "configuration_status": "not_verified_or_deployed"
+      },
+      {
+        "event_id": "room.pool.temperature_low",
+        "title": "Бассейн: температура ниже заданной",
+        "description": "Сравнение с действующей уставкой термостата зоны бассейна.",
+        "configuration_status": "not_verified_or_deployed"
+      },
+      {
+        "event_id": "room.basement.temperature_low",
+        "title": "Подвал: температура ниже заданной",
+        "description": "Действующая уставка и запрос нагрева требуют идентификации.",
+        "configuration_status": "not_verified_or_deployed"
+      },
+      {
+        "event_id": "room.gazebo.temperature_low",
+        "title": "Беседка: температура ниже заданной",
+        "description": "Термостат Беседки требует live-проверки уставки и исполнительного канала.",
+        "configuration_status": "not_verified_or_deployed"
+      }
+    ],
+    "official_reference": "https://wiki.spruthub.ru/Push_уведомления_из_webapp",
+    "notes": "Решение согласовано с заказчиком: без переноса логики в Wiren Board. Проверка push и сценариев после появления доступа в Sprut.hub; не утверждать, что уже настроено."
+  }
 }

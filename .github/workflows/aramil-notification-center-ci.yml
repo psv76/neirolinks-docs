@@ -49,7 +49,12 @@ jobs:
           assert cat["rooms_push"]["owner"]=="Sprut.hub"
           assert len(cat["rooms_push"]["thermostats"])==4
           assert cat["api_url"] is None
-          print("37 WB email rules; 4 Sprut push rooms; API not deployed")
+          assert cat["registry_projection_version"]==1
+          assert len(cat["registry_source_sha256"])==64
+          forbidden={"definition","policy","verification","owner_script","engineering_blocker"}
+          assert not any(forbidden.intersection(set(r)) for r in cat["rules"])
+          assert not any("sensor" in r or "setpoint_source" in r for r in cat["rules"])
+          print("37 WB email rules; four Sprut push; sanitized engineering view; API not deployed")
           PY
       - name: Strict MkDocs site preview build
         run: mkdocs build --strict -f objects/05-26-aramil-jnsyo6/mkdocs.yml -d "$RUNNER_TEMP/aramil-site"

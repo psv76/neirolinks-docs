@@ -67,10 +67,11 @@
       }
     ],
     "official_reference": "https://wiki.spruthub.ru/Push_уведомления_из_webapp",
-    "notes": "Решение согласовано с заказчиком: без переноса логики в Wiren Board. Проверка push и сценариев после появления доступа в Sprut.hub; не утверждать, что уже настроено."
+    "notes": "Решение согласовано с заказчиком: без переноса логики в Wiren Board. Проверка push и сценариев после появления доступа в Sprut.hub; не утверждать, что уже настроено.",
+    "decision_date": "2026-11-21"
   },
   "registry_projection_version": 1,
-  "registry_source_sha256": "b05ce30541532035e8a18a29f4f9cfb1612263007066d328db3f3d145e481ab3",
+  "registry_source_sha256": "571ef4dbef2a32608d0e82944b10be256ae40fbcb98fba6fa4249fab50f00463",
   "rules": [
     {
       "event_id": "boiler.gas_fault",

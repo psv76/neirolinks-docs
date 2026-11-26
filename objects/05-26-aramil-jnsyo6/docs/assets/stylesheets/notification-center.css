@@ -1,0 +1,36 @@
+/* Standalone accessible MkDocs enhancement: no global Material CSS changes. */
+#notification-center { --nc-line: var(--md-default-fg-color--lightest); margin: 1rem 0 2rem; color:var(--md-default-fg-color); }
+#notification-center .nc-header h2 { margin:0 0 .45rem; font-size:1.4rem; font-weight:700; }
+#notification-center .nc-header p { margin:.2rem 0 1rem; }
+#notification-center .nc-status { border-left:3px solid var(--md-accent-fg-color); padding:.7rem .9rem; background:var(--md-code-bg-color); font-size:.75rem; margin-bottom:1.1rem; }
+#notification-center .nc-tabs { display:flex; flex-wrap:wrap; gap:.35rem; border-bottom:1px solid var(--nc-line); margin-bottom:1rem; padding-bottom:.45rem; }
+#notification-center .nc-tab { appearance:none; cursor:pointer; border:1px solid var(--nc-line); padding:.55rem .75rem; border-radius:.45rem; font:inherit; font-weight:600; font-size:.75rem; color:inherit; background:transparent; }
+#notification-center .nc-tab-active { background:var(--md-primary-fg-color); color:var(--md-primary-bg-color); border-color:var(--md-primary-fg-color); }
+#notification-center .nc-tab:focus-visible, #notification-center button:focus-visible, #notification-center input:focus-visible { outline:3px solid var(--md-accent-fg-color); outline-offset:2px; }
+#notification-center .nc-panel h3 { font-size:1.1rem; margin:0 0 .2rem; }
+#notification-center .nc-muted { color:var(--md-default-fg-color--light); font-size:.74rem; }
+#notification-center .nc-list { display:grid; gap:.45rem; margin-top:.9rem; }
+#notification-center .nc-event { cursor:pointer; display:flex; align-items:flex-start; gap:.65rem; border:1px solid var(--nc-line); border-radius:.5rem; padding:.8rem; background:var(--md-default-bg-color); }
+#notification-center .nc-event:has(input:checked) { border-color:var(--md-accent-fg-color); }
+#notification-center .nc-event > input { cursor:pointer; accent-color:var(--md-accent-fg-color); min-width:1.1rem; height:1.1rem; margin-top:.12rem; }
+#notification-center .nc-event-body { display:flex; flex:1; min-width:0; flex-direction:column; gap:.2rem; }
+#notification-center .nc-event-body strong { font-size:.84rem; overflow-wrap:anywhere; }
+#notification-center .nc-description,#notification-center .nc-warning { font-size:.73rem; color:var(--md-default-fg-color--light); }
+#notification-center .nc-warning { color:var(--md-accent-fg-color); }
+#notification-center .nc-badges { display:flex; flex-wrap:wrap; align-items:center; gap:.35rem; margin:.15rem 0; }
+#notification-center .nc-severity,#notification-center .nc-stage { font-size:.64rem; letter-spacing:.01em; display:inline-block; border:1px solid var(--nc-line); padding:.14rem .35rem; border-radius:999px; }
+#notification-center .nc-severity-critical { font-weight:700; }
+#notification-center .nc-stage.nc-pending { font-style:italic; }
+#notification-center .nc-settings { display:flex; gap:.38rem; flex-wrap:wrap; align-items:center; padding-top:.3rem; font-size:.73rem; }
+#notification-center .nc-number { appearance:textfield; max-width:4.5rem; border:1px solid var(--nc-line); border-radius:.3rem; padding:.26rem .35rem; background:var(--md-code-bg-color); color:inherit; font:inherit; }
+#notification-center .nc-footer { border-top:1px solid var(--nc-line); margin-top:1.1rem; padding-top:1rem; }
+#notification-center .nc-summary { font-weight:600; font-size:.8rem; }
+#notification-center .nc-buttons { display:flex; flex-wrap:wrap; gap:.55rem; margin:.8rem 0; }
+#notification-center .nc-button { cursor:pointer; font-size:.76rem; border:1px solid var(--nc-line); border-radius:.4rem; padding:.6rem .85rem; font-weight:600; color:inherit; background:var(--md-code-bg-color); }
+#notification-center .nc-button.nc-primary { background:var(--md-primary-fg-color); color:var(--md-primary-bg-color); border-color:var(--md-primary-fg-color); }
+#notification-center .nc-button[disabled] { opacity:.55; cursor:wait; }
+#notification-center .nc-feedback { min-height:1.6rem; font-size:.76rem; font-weight:600; }
+#notification-center .nc-access label { display:block; font-size:.76rem; font-weight:600; margin-bottom:.35rem; }
+#notification-center .nc-input { width:min(100%,20rem); display:block; border:1px solid var(--nc-line); border-radius:.3rem; padding:.45rem .65rem; margin:.3rem 0; background:var(--md-code-bg-color); color:inherit; font:inherit; }
+#notification-center .nc-preview { max-height:18rem; overflow:auto; font-size:.66rem; border:1px solid var(--nc-line); padding:.8rem; margin-top:.5rem; background:var(--md-code-bg-color); }
+@media(max-width:600px) { #notification-center .nc-tab { flex:1 1 43%; } #notification-center .nc-event { padding:.65rem; } #notification-center .nc-buttons > button { flex:1 1 100%; } }

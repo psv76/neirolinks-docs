@@ -42,7 +42,8 @@ nav:
   - Быстрый старт: quick-start.md
   - Системы: systems.md
   - Что произойдёт, если…: scenarios.md
-  - Настройки: settings.md
+  - Центр уведомлений: notifications.md
+  - Параметры системы: settings.md
   - Аварии и неисправности: alarms.md
   - Сценарии:
       - Реестр: scripts/index.md
@@ -60,6 +61,12 @@ nav:
       - "12 Антилегионелла": scripts/12.md
   - Техническое приложение: technical.md
   - История версий: versions.md
+
+extra_css:
+  - assets/stylesheets/notification-center.css
+
+extra_javascript:
+  - assets/javascripts/notification-center.js
 
 extra:
   generator: false
